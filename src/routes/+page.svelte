@@ -7,7 +7,8 @@
     <div class="player-info">
         <div class="account-name">{user.account_name}</div>
         <form action="/logout" method="POST">
-            <button class="logout">Logout</button>
+            <button class="player-button">Logout</button>
+            <button class="player-button">Delete</button>
         </form>
     </div>
     <div class="wheel"></div>
@@ -37,6 +38,11 @@
         position: absolute;
         z-index: 0;
         background-color: rgba(22, 22, 22, 0.253);
+    }
+
+    .player-button {
+        color: red;
+        background-color: black;
     }
 
 </style>

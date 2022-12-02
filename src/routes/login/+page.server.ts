@@ -3,15 +3,10 @@ import { db } from '$lib/server/db';
 import { v4 as uuid } from 'uuid';
 import { invalid, redirect } from '@sveltejs/kit';
 import * as argon2 from 'argon2'
-import { writable } from 'svelte/store'
 
 export const load: PageServerLoad = async ({ locals }) => {
     if (locals.user) {
         throw redirect(302, '/');
-    }
-
-    const genRand = (len: number) => {
-        return Math.random().toString(36).substring(2, len + 2).toUpperCase();
     }
 };
 
@@ -20,7 +15,6 @@ export const actions: Actions = {
         const data = await request.formData();
         const account_name = data.get('account_name');
         const password = data.get('password');
-        console.log(account_name, password)
 
         if (!account_name || !password || typeof account_name !== 'string' || typeof password !== 'string') {
             return invalid(400, { invalid: true })
@@ -28,7 +22,7 @@ export const actions: Actions = {
 
         const user = await db.user.findUnique({ where: { account_name } });
         const sessionid = uuid();
-        console.log(user, sessionid)
+        if (account_name.length > 16 && password.length > 16) return invalid(400, { invalid: true })
         if (!user) {
             const hashPass = await argon2.hash(password)
             const newUser = await db.user.create({
