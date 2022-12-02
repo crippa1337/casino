@@ -20,9 +20,9 @@ export const actions: Actions = {
             return invalid(400, { invalid: true })
         }
 
+        if (account_name.length > 16 || password.length > 64) return invalid(400, { invalid: true })
         const user = await db.user.findUnique({ where: { account_name } });
         const sessionid = uuid();
-        if (account_name.length > 16 && password.length > 16) return invalid(400, { invalid: true })
         if (!user) {
             const hashPass = await argon2.hash(password)
             const newUser = await db.user.create({
