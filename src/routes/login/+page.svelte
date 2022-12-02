@@ -12,7 +12,7 @@
                 <div class="error">Invalid Input!<br>Please try again.</div>
             {/if}
         <div class="login__container__header">
-            <h1>Ericsson Casino</h1>
+            <h1>crippa1337's Casino</h1>
         </div>
         <div class="login__container__form">
             <form method="POST">
