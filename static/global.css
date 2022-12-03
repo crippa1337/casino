@@ -5,3 +5,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --bg-color: rgb(20, 20, 20);
+    --fg-color: rgb(27, 27, 27);
+    --gamer-green: rgba(0, 255, 64, 0.342);
+    --boxshadow-green: rgba(10, 49, 0, 0.486) 0px 8px 24px;
+}

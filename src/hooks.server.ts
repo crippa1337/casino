@@ -37,6 +37,5 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
 
     event.locals.user = user;
-    console.log(event.locals.user)
     return await resolve(event);
 }

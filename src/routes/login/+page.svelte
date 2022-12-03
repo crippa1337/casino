@@ -11,23 +11,25 @@
             {#if form?.invalid}
                 <div class="error">Invalid Input!<br>Please try again.</div>
             {/if}
-        <div class="login__container__header">
-            <h1>crippa1337's Casino</h1>
-        </div>
-        <div class="login__container__form">
-            <form method="POST">
-                <div class="login__container__form__input">
-                    <label for="account_name">Name</label>
-                    <input type="text" name="account_name" id="account_name" placeholder="Name" />
-                </div>
-                <div class="login__container__form__input">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" />
-                </div>
-                <div class="login__container__form__input">
-                    <button type="submit">Log in</button>
-                </div>
-            </form>
+        <div class="super__login__container">
+            <div class="login__container__header">
+                <h1>Casino 1337</h1>
+            </div>
+            <div class="login__container__form">
+                <form method="POST">
+                    <div class="login__container__form__input">
+                        <label for="account_name">Name</label>
+                        <input type="text" name="account_name" id="account_name" placeholder="Name" />
+                    </div>
+                    <div class="login__container__form__input">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Password" />
+                    </div>
+                    <div class="login__container__form__input">
+                        <button type="submit">Log in</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </main>
@@ -40,14 +42,27 @@
         padding: 0;
     }
 
-    .login__container {
-        width: 100%;
-        height: 100vh;
+    .super__login__container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: rgb(43, 43, 43);
+        width: 50%;
+        height: 50vh;
+        outline: 1px solid green;
+        border-radius: 1rem;
+        background-color: var(--fg-color);
+        box-shadow: rgba(10, 49, 0, 0.486) 0px 8px 24px;
+    }
+
+    .login__container {
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .login__container__header {
@@ -64,7 +79,7 @@
     }
 
     .login__container__form {
-        width: 29%;
+        width: 58%;
         height: 20rem;
         display: flex;
         justify-content: center;
@@ -101,10 +116,14 @@
         border-radius: 0.5rem;
         padding: 0.5rem;
         font-size: 1rem;
+        color: white;
+        background-color: rgba(20, 20, 20, 0.719);
+        transition: 0.25s;
     }
 
     .login__container__form__input input:focus {
-        outline: none;
+        outline: green solid 2px;
+        box-shadow: rgba(10, 49, 0, 0.486) 0px 8px 24px;
     }
 
     .login__container__form__input button {
@@ -114,6 +133,19 @@
         border-radius: 0.5rem;
         padding: 0.5rem;
         font-size: 1rem;
+        background-color: rgb(20, 20, 20);
+        color: white;
+        transition: 0.25s;
+    }
+
+    .login__container__form__input button:hover {
+        outline: green 2px solid;
+        box-shadow: rgba(10, 49, 0, 0.486) 0px 8px 24px;
+        color: rgb(25, 128, 0);
+    }
+
+    .login__container__form__input button:active {
+        scale: 0.95;
     }
 
     .error {
