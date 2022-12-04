@@ -4,7 +4,7 @@
 </script>
 
 <div class="player-info">
-    <div class="company">Casino 1337&#8482</div>
+    <div class="company">Ericsson Casino&#8482</div>
     <div class="nav-buttons-container">
         <a href="/coinflip" class="button coinflip">Coinflip</a>
         <a href="/roulette" class="button roulette">Roulette</a>

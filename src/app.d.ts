@@ -6,6 +6,12 @@ declare global {
 				account_name: string;
 				balance: number;
 			};
+
+			rooms: {
+				id: number;
+				bet: number;
+				occupied: number;
+			};
 		}
 	}
 
@@ -15,6 +21,11 @@ declare global {
 		balance: number;
 	}
 
+	interface Cfrooms {
+		id: number;
+		bet: number;
+		occupied: number;
+	}
 
 }
 

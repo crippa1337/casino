@@ -16,11 +16,9 @@ export const actions: Actions = {
         const account_name = data.get('account_name');
         const password = data.get('password');
 
-        if (!account_name || !password || typeof account_name !== 'string' || typeof password !== 'string') {
-            return invalid(400, { invalid: true })
-        }
-
+        if (!account_name || !password || typeof account_name !== 'string' || typeof password !== 'string') { return invalid(400, { invalid: true }) }
         if (account_name.length > 16 || password.length > 64) return invalid(400, { invalid: true })
+
         const user = await db.user.findUnique({ where: { account_name } });
         const sessionid = uuid();
         if (!user) {

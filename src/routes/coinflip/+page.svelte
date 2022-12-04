@@ -1,38 +1,46 @@
 <script lang="ts">
+    import type { ActionData } from "./$types";
+    export let form: ActionData;
     import PlayerInfo from "$lib/components/playerinfo.svelte";
-
+    import type { PageData } from './$types';
+    export let data: PageData;
+        
     let value = "";
-
     $: value = value.replace(/[^0-9]/g, '')
+
 </script>
 
 <main>
     <PlayerInfo/>
     <div class="play-area-container">
         <div class="room-container">
-            <form class="betting-area room" method="POST" action="">
+            <form class="betting-area room" method="POST">
                 <h1>Coinflip</h1>
-                <input bind:value min=1 type="tel" name="betting_input" id="betting_input" placeholder="Bet size" />
-                <button>Create Bet</button>
+                <input bind:value min=1 type="text" name="betting_input" id="betting_input" placeholder="Bet size" />
+                <button type="submit">Create Bet</button>
+                {#if form?.invalid}
+                    <div class="error">Balance is too low.</div>
+                {/if}
+                {#if form?.incorrect}
+                    <div class="error">Invalid input.</div>
+                {/if}
             </form>
-            <div class="room room1">
+            {#each data.rooms as room}
+                <div class="room betting-room">
+                    <h1>{room.id}</h1>
+                    {#if room.occupied == 0}
+                        <div class="room-empty">Empty</div>
+                    {:else if room.occupied == 1}
+                        <div class="room-bet-size">{room.bet}</div>
+                        <div class="room-bet-player1"></div>
+                    {:else}
+                        <div class="room-bet-size">{room.bet}</div>
+                        <div class="room-bet-player1"></div>
+                        <div class="room-bet-player2"></div>
+                    {/if}
 
-            </div>
-            <div class="room room2">
-
-            </div>
-            <div class="room room3">
-
-            </div>
-            <div class="room room4">
-
-            </div>
-            <div class="room room5">
-
-            </div>
-            <div class="room room6">
-
-            </div>
+                </div>
+            {/each}
         </div>
     </div>
 </main>
@@ -83,30 +91,6 @@
         background-color: var(--fg-color);
         box-shadow: rgba(10, 49, 0, 0.486) 0px 8px 24px;
         outline: 1px solid green;
-    }
-
-    .room1 {
-        grid-area: room1;
-    }
-
-    .room2 {
-        grid-area: room2;
-    }
-
-    .room3 {
-        grid-area: room3;
-    }
-
-    .room4 {
-        grid-area: room4;
-    }
-
-    .room5 {
-        grid-area: room5;
-    }
-
-    .room6 {
-        grid-area: room6;
     }
 
     .betting-area {
@@ -166,6 +150,30 @@
 
     .betting-area button:active {
         scale: 0.95;
+    }
+
+    .error {
+        margin-top: 1rem;
+        color: rgb(255, 255, 255);
+        font-size: 1rem;
+    }
+
+    .room-empty {
+        color: rgba(255, 255, 255, 0.295);
+        font-size: 3rem;
+        width: auto;
+        height: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .betting-room
+
+    .betting-room h1 {
+        color: white;
+        margin: 0.5rem;
     }
 
 </style>

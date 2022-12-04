@@ -6,14 +6,14 @@
 <main>
     <div class="login__container">
             {#if form?.incorrect}
-                <div class="error">Invalid Password!<br>Please try again.</div>
+                <div class="error">Incorrect Password!<br>Please try again.</div>
             {/if}
             {#if form?.invalid}
                 <div class="error">Invalid Input!<br>Please try again.</div>
             {/if}
         <div class="super__login__container">
             <div class="login__container__header">
-                <h1>Casino 1337</h1>
+                <h1>Ericsson Casino</h1>
             </div>
             <div class="login__container__form">
                 <form method="POST">
