@@ -3,28 +3,35 @@
     export let form: ActionData;
     import PlayerInfo from "$lib/components/playerinfo.svelte";
     import type { PageData } from './$types';
+    import { enhance } from "$app/forms";
     export let data: PageData;
         
     let value = "";
     $: value = value.replace(/[^0-9]/g, '')
-
+    console.log(data);
+    
 </script>
 
 <main>
     <PlayerInfo/>
     <div class="play-area-container">
         <div class="room-container">
-            <form class="betting-area room" method="POST">
-                <h1>Coinflip</h1>
-                <input bind:value min=1 type="text" name="betting_input" id="betting_input" placeholder="Bet size" />
-                <button type="submit">Create Bet</button>
-                {#if form?.invalid}
-                    <div class="error">Balance is too low.</div>
-                {/if}
-                {#if form?.incorrect}
-                    <div class="error">Invalid input.</div>
-                {/if}
-            </form>
+            <div class="betting-area room">
+                <form method="POST" action="?/create_bet" use:enhance>
+                    <h1>Coinflip</h1>
+                    <input bind:value min=1 type="text" name="betting_input" id="betting_input" placeholder="Bet size" />
+                    <button type="submit">Create Bet</button>
+                    {#if form}
+                        <div class="error">Balance is too low.</div>
+                    {/if}
+                    {#if form?.incorrect}
+                        <div class="error">Invalid input.</div>
+                    {/if}
+                </form>
+                <form method="POST" action="?/refresh_bets" use:enhance>
+                    <button type="submit">Refresh Bets</button>
+                </form>
+            </div>
             {#each data.rooms as room}
                 <div class="room betting-room">
                     <h1>{room.id}</h1>

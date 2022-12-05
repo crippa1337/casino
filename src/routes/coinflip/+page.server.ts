@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions: Actions = {
-    default: async ({ request, locals }) => {
+    create_bet: async ({ request, locals }) => {
         const data = await request.formData();
         let get_bet = data.get('betting_input') as string;
 
@@ -28,5 +28,11 @@ export const actions: Actions = {
             }
         });
         console.log(room);
+    },
+
+    refresh_bets: async () => {
+        return {
+            rooms: await db.cfrooms.findMany()
+        };
     },
 };
